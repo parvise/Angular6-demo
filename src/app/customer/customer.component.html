@@ -1,0 +1,4 @@
+<h4 style="text-align: center;"><span class="badge badge-light ">All Customers</span></h4>
+<div *ngFor="let cust of customers">
+  <a [routerLink]="['/customers', cust.id]" style="color:black"><span class="badge badge-dark">{{cust.id}}</span> -> {{ cust.firstname }}</a>
+</div>

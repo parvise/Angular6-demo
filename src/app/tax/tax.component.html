@@ -1,0 +1,57 @@
+<h4 style="text-align: center;"><span class="badge badge-light ">Add Tax Details</span></h4>
+<table>
+  <tr>
+    <td>
+      <form #taxForm="ngForm">
+        <div class="form-group">
+          <label for="taxName">Tax Name</label>
+          <input type="text" class="form-control" id="taxName" required [(ngModel)]="taxBean.taxName" name="taxName"
+            #taxName="ngModel">
+          <div [hidden]="taxName.valid || taxName.pristine" class="alert alert-danger">
+            Tax Name is required
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="taxValue">Tax Vale</label>
+          <input type="text" class="form-control" id="taxValue" required [(ngModel)]="taxBean.taxValue" name="taxValue"
+            #taxValue="ngModel">
+          <div [hidden]="taxValue.valid || taxValue.pristine" class="alert alert-danger">
+            Tax Value is required
+          </div>
+        </div>
+
+        <div class="btn-group btn-group-sm">
+          <button type="button" class="btn btn-dark" [disabled]="!taxForm.form.valid">Save</button>
+          <button type="submit" class="btn btn-dark">Update</button>
+          <button class="btn btn-dark">Delete</button>
+          <button class="btn btn-dark">Clear</button>
+        </div>
+      </form>
+    </td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>
+      <table style="border:1px thin white;">
+        <thead style="background-color: red;color:white;">Tax Name</thead>
+        <tr>
+          <td>GST 5%</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>

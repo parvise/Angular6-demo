@@ -1,0 +1,50 @@
+<h4 style="text-align: center;"><span class="badge badge-light ">Add Financial Year</span></h4>
+<table>
+  <tr>
+    <td>
+      <form #finacialYearForm="ngForm">
+        <div class="form-group">
+          <label for="finYear">Financial Year</label>
+          <input type="text" class="form-control" id="finYear" required [(ngModel)]="finYearBean.finYear" name="finYear"
+            #finYear="ngModel">
+          <div [hidden]="finYear.valid || finYear.pristine" class="alert alert-danger">
+            Financial is required
+          </div>
+        </div>
+
+        <div class="btn-group btn-group-sm">
+          <button type="button" class="btn btn-dark" [disabled]="!finacialYearForm.form.valid" (click)="saveFinancYear()">Save</button>
+          <button type="submit" class="btn btn-dark">Update</button>
+          <button class="btn btn-dark" (click)="deleteRow(finYearBean)">Delete</button>
+          <button class="btn btn-dark">Clear</button>
+        </div>
+      </form>
+    </td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>
+      
+          <table style="border:1px thin white;" class="table table-bordered">
+            <thead style="background-color: red;color:white;">Financial Year</thead>
+            <tr *ngFor="let data of listFinaceData">
+              <td (click)="editRow(data)">{{data.finYear}}</td>
+            </tr>
+          </table>
+       
+    </td>
+  </tr>
+</table>

@@ -1,0 +1,61 @@
+<div id="navbar">
+  <div *ngIf="menuList">
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">WebSiteName</a>
+        </div>
+        <ul class="nav navbar-nav" *ngFor="let menu of menuList">
+          <li class="active" *ngIf="!menu.childMenus; else childMenuBlock"><a routerLink='{{menu.path}}'
+              routerLinkActive="active" (click)=menuClick(menu.title) [ngClass]='selectedMenu'>{{menu.title}}</a></li>
+          <ng-template #childMenuBlock>
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{menu.title}}
+                <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li *ngFor="let childMenu of menu.childMenus">
+                  <a class="dropdown-item" routerLink='{{childMenu.path}}'
+                    routerLinkActive="active">{{childMenu.title}}</a>
+                </li>
+              </ul>
+            </li>
+          </ng-template>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</div>
+
+
+
+
+
+<div *ngIf="loginSuccess; else logOutBlock">
+  <div *ngIf="loginSuccess.loginResponse" style="color: green;">
+    <h3>Welcome To {{loginSuccess.loginResponse.userName }} , Your role has {{loginSuccess.loginResponse.role}}</h3>
+  </div>
+</div>
+<ng-template #logOutBlock>
+  <div style="color: red;">
+    <h3>{{logOutSuccess}}</h3>
+  </div>
+</ng-template>
+
+<div class="jumbotron jumbotron-fluid" style="margin-left:500px;height: 670px;width:600px;">
+  <div class="container">
+    <div *ngIf="!loginSuccess">
+      <app-login-view (eventEmit)="loginSuccess=($event);"></app-login-view>
+    </div>
+
+    <div *ngIf="loginSuccess">
+      <router-outlet></router-outlet>
+    </div>
+    <!---->
+
+    <!-- <div *ngIf="loginSuccess">
+          Welcome To {{loginSuccess.message}}
+          <h4>Wel {{loginSuccess | json}} </h4>
+        </div>
+       -->
+  </div>
+</div>

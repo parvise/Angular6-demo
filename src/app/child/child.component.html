@@ -1,0 +1,12 @@
+<p>
+  child works!
+  <br>
+  <br><br><br><br>
+  Child<input type="text" name="t1" id="t1" [(ngModel)]="t1" />
+  {{t1}}
+</p>
+
+<p>
+  Fruits Add <input type="text"  [(ngModel)]="addFruit" #key />
+  <input type="button" value="Send" (click)="fireEvent(key.value)">
+</p>

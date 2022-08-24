@@ -1,0 +1,18 @@
+<table style="border:1px solid green;">
+  <tr>
+    <br><br><br><br>
+    <div *ngFor="let fruit of fruits;">
+      <td (click)="fruitTest(fruit)">
+        <ul>
+          <li><a>{{fruit.name}}</a></li>
+        </ul>
+      </td>
+    </div>
+    <td>
+      <div class="vl">
+        <app-child [parentData]="t1" [parentArray]="fruits" (childEvent)="message = $event;fruits.push(message);"></app-child>
+      </div>
+      
+    </td>
+  </tr>
+</table>

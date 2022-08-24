@@ -1,0 +1,82 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  },
+  "employees": [
+    {
+      "id": 1,
+      "fullName": "Pervez",
+      "contactPrefer": "email",
+      "email": "p@hp.com",
+      "skills": [
+        {
+          "skillName": "Java",
+          "experience": "1",
+          "proficeincy": "beginner"
+        },
+        {
+          "skillName": "Angular",
+          "experience": "2",
+          "proficeincy": "beginner"
+        }
+      ],
+      "phone": "453498583"
+    },
+    {
+      "id": 2,
+      "fullName": "ki",
+      "contactPrefer": "email",
+      "email": "k@hp.com",
+      "skills": [
+        {
+          "skillName": "java",
+          "experience": "1",
+          "proficeincy": "beginner"
+        }
+      ],
+      "phone": "4332"
+    },
+    {
+      "id": 3,
+      "fullName": "Hari",
+      "contactPrefer": "email",
+      "email": "h@hp.com",
+      "skills": [
+        {
+          "skillName": "Java",
+          "experience": "1",
+          "proficeincy": "beginner"
+        }
+      ],
+      "phone": "832848"
+    },
+    {
+      "id": 4,
+      "fullName": "su",
+      "contactPrefer": "email",
+      "email": "s@hp.com",
+      "skills": [
+        {
+          "skillName": "c",
+          "experience": "2",
+          "proficeincy": "beginner"
+        }
+      ],
+      "phone": ""
+    }
+  ]
+}

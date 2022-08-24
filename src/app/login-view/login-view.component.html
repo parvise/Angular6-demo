@@ -1,0 +1,44 @@
+<h4 style="text-align: center;" class="panel-title"><span class="badge badge-light ">Welcome To BMO Software</span></h4>
+<div [hidden]="!loginform.success">
+  Welcome to <span class="badge badge-light ">{{loginform.role}}</span>
+</div>
+{{errorMessage}}
+<div [hidden]="submitted">
+  <div *ngIf="loginForm"> {{loginForm.userName}} </div>
+
+  <form (ngSubmit)="login()" #loginForm="ngForm"> 
+    <div class="form-group">
+      <label for="userName">UserName</label>
+      <input type="text" class="form-control" placeholder="Enter UserName" required [(ngModel)]="loginform.userName"
+        name="userName" #userName="ngModel">
+      <div [hidden]="userName.valid || userName.pristine" class="alert alert-danger">
+        Username is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" class="form-control" placeholder="Enter Password" required [(ngModel)]="loginform.password"
+        name="password" #password="ngModel">
+      <div [hidden]="password.valid || password.pristine" class="alert alert-danger">
+        Password is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="year">Financial Year</label>
+      <select class="form-control" placeholder="Select Year" [(ngModel)]="loginform.finYear" name="finYear"
+        #finYear="ngModel">
+        <option value="17/18">17/18</option>
+        <option value="18/19">18/19</option>
+        <option value="19/20">19/20</option>
+        <option value="20/21">20/21</option>
+      </select>
+    </div>
+
+    <div class="btn-group btn-group-lg">
+      <button type="submit" class="btn btn-primary" [disabled]="!loginForm.form.valid">Login</button>
+      <button type="button" class="btn btn-danger" >Cancel</button>
+    </div>
+  </form>
+</div>

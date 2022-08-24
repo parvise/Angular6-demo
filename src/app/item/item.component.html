@@ -1,0 +1,96 @@
+<h4 style="text-align: center;"><span class="badge badge-light ">Add Item Details</span></h4>
+<table>
+  <tr>
+    <td>
+      <form #itemForm="ngForm">
+        <div class="form-group">
+          <label for="itemCode">Item Code</label>
+          <input type="text" class="form-control" id="itemCode" required [(ngModel)]="itemBean.itemCode" name="itemCode"
+            #itemCode="ngModel">
+          <div [hidden]="itemCode.valid || itemCode.pristine" class="alert alert-danger">
+            Item Code is required
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="itemName">Item Name</label>
+          <input type="text" class="form-control" id="itemName" required [(ngModel)]="itemBean.itemName" name="itemName"
+            #itemName="ngModel">
+          <div [hidden]="itemName.valid || itemName.pristine" class="alert alert-danger">
+            Item Name is required
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="hsnCode">HSN Code</label>
+          <input type="text" class="form-control" id="hsnCode" required [(ngModel)]="itemBean.hsnCode" name="hsnCode"
+            #hsnCode="ngModel">
+          <div [hidden]="hsnCode.valid || hsnCode.pristine" class="alert alert-danger">
+            HSN Code is required
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="unit">Unit</label>
+          <input type="text" class="form-control" id="unit" required [(ngModel)]="itemBean.unit" name="unit"
+            #unit="ngModel">
+          <div [hidden]="unit.valid || unit.pristine" class="alert alert-danger">
+            Unit is required
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="price">Price</label>
+          <input type="text" class="form-control" id="price" required [(ngModel)]="itemBean.price" name="price"
+            #price="ngModel">
+          <div [hidden]="price.valid || price.pristine" class="alert alert-danger">
+            Price is required
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="tax">Tax</label>
+          <select class="form-control" placeholder="Select Tax" [(ngModel)]="itemBean.tax" name="tax" #tax="ngModel">
+            <option value="5">GST 5%</option>
+            <option value="10">GST 10%</option>
+            <option value="15">GST 15%</option>
+          </select>
+        </div>
+
+
+        <div class="btn-group btn-group-sm">
+          <button type="button" class="btn btn-dark" [disabled]="!itemForm.form.valid">Save</button>
+          <button type="submit" class="btn btn-dark">Update</button>
+          <button class="btn btn-dark">Delete</button>
+          <button class="btn btn-dark">Clear</button>
+        </div>
+      </form>
+    </td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>
+      <table style="border:1px thin white;">
+        <tr style="background-color: red;color:white;">
+          <th>Item Code</th>
+          <th>Item Name</th>
+        </tr>
+        <tr>
+          <td>A0001</td>
+          <td>Product Name 1</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>

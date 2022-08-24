@@ -1,0 +1,166 @@
+<div class="jumbotron jumbotron-fluid" [ngClass]="{'jumbotron' : jmbotronStyle}">
+  <div class="container">
+    <form [formGroup]="empForm" (ngSubmit)="onSubmit()" class="form-horizontal">
+      <div class="panel-group">
+        <div class="panel panel-primary">
+          <div class="panel-heading">{{pageTitle}}</div>
+          <div class="panel-body">
+
+            <div class="form-group" [ngClass]="{'has-error': formErrors.fullName }">
+              <label for="fullName" class="control-label col-sm-4">FullName:</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" placeholder="Enter FullName" formControlName="fullName"
+                  (blur)="logKeyValuePairs()">
+
+                <span class="help-block" *ngIf="formErrors.fullName">
+                  {{formErrors.fullName}}
+                </span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="contactPrefer" class="control-label col-sm-4">Contact Preference:</label>
+              <div class="col-sm-8">
+                <label class="raido-inline"><input type="radio" name="contactPrefer" formControlName="contactPrefer"
+                    value="email" checked> Email </label> &nbsp;
+                <label class="raido-inline"> <input type="radio" name="contactPrefer" formControlName="contactPrefer"
+                    value="phone">
+                  Phone</label>
+              </div>
+            </div>
+
+            <div formGroupName="emailGroup">
+              <div class="form-group" [ngClass]="{'has-error': formErrors.email }">
+                <label for="email" class="control-label col-sm-4">Email:</label>
+                <div class="col-sm-8">
+                  <input type="text" class="form-control" placeholder="Enter Email" formControlName="email"
+                    (blur)="logKeyValuePairs()">
+
+                  <span class="help-block" *ngIf="formErrors.email">
+                    {{formErrors.email}}
+                  </span>
+                </div>
+              </div>
+
+              <div class="form-group" [ngClass]="{'has-error': formErrors.confirmEmail || formErrors.emailGroup }">
+                <label for="confirmEmail" class="control-label col-sm-4">Confirm Email:</label>
+                <div class="col-sm-8">
+                  <input type="text" class="form-control" placeholder="Enter Confirm Email"
+                    formControlName="confirmEmail" (blur)="logKeyValuePairs()">
+
+                  <span class="help-block" *ngIf="formErrors.confirmEmail || formErrors.emailGroup">
+                    {{formErrors.confirmEmail ? formErrors.confirmEmail: formErrors.emailGroup }}
+
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group" [ngClass]="{'has-error': formErrors.phone }">
+              <label for="phone" class="control-label col-sm-4">Phone:</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" placeholder="Enter Phone" formControlName="phone"
+                  (blur)="logKeyValuePairs()">
+
+                <span class="help-block" *ngIf="formErrors.phone">
+                  {{formErrors.phone}}
+                </span>
+              </div>
+            </div>
+
+            <div class="well">
+              <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-4">
+                  <button type="submit" class="btn btn-primary" (click)="addAdditionalSkills()"
+                    [disabled]="empForm.get('skills').invalid">Add Skill</button>
+                </div>
+              </div>
+              <div formArrayName="skills" *ngFor="let skill of empForm.get('skills').controls; let i=index">
+                <hr style="border:1px solid silver;" *ngIf="i>0" />
+                <div [formGroupName]="i">
+                  <div class="form-group" [ngClass]="{'has-error': (skill.get('skillName').invalid && skill.get('skillName').touched) ||
+                     (skill.get('experience').invalid && skill.get('experience').touched)}">
+                    <label for="{{'skillName'+i}}" class="control-label col-sm-2">Skills:</label>
+                    <div class="col-sm-7">
+
+                      <select class="form-control" placeholder="Enter Skill Name(ex:Java,Angular... etc)"
+                        id="{{'skillName'+i}}" formControlName="skillName">
+                        <option value="" selected>--Select Skill Name--</option>
+                        <option *ngFor="let skillSet of skillSets" value="{{skillSet.skillId}}">{{skillSet.skillName}}
+                        </option>
+                      </select>
+
+                      &nbsp; <span class="help-block"
+                        *ngIf="skill.get('skillName').invalid && skill.get('skillName').touched">
+                        Skill Name is Required.
+                      </span>
+                      <input type="text" class="form-control" placeholder="Enter Experience in Years"
+                        id="{{'experience'+i}}" formControlName="experience">
+                      <span class="help-block"
+                        *ngIf="skill.get('experience').invalid && skill.get('experience').touched">
+                        Experience is Required.
+                      </span>
+                    </div>
+                    
+                    <label for="{{'proficeincy'+i}}">Proficeincy : </label>
+                    <div class="form-group" [ngClass]="{'has-error': formErrors.proficeincy}">
+
+                      <input type="radio" id="{{'proficeincy'+i}}" formControlName="proficeincy" value="beginner"
+                        checked>
+                      Beginner<br>
+                      <input type="radio" id="{{'proficeincy'+i}}" formControlName="proficeincy" value="intermediate">
+                      Intermediate<br>
+                      <input type="radio" id="{{'proficeincy'+i}}" formControlName="proficeincy" value="expert"> Expert
+
+                      <span class="help-block" *ngIf="formErrors.proficeincy">
+                        {{formErrors.proficeincy}}
+                      </span>
+                    </div>
+                    <div class="col-sm-offset-2 col-sm-4" *ngIf="empForm.get('skills').length>1">
+                      <button class="btn btn-danger btn-sm pull-left" title="Delete" (click)="deleteSkillGroup(i)"><span
+                          class="glyphicon glyphicon-remove"></span></button>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+
+
+
+          </div>
+          <div class="panel-footer">
+            <div class="btn-group btn-group-lg">
+              <div class="btn-toolbar">
+                <button type="submit" class="btn btn-primary" [disabled]="empForm.invalid">Save</button>
+                <button type="button" class="btn btn-info ml-1" (click)="loadData()">LoadData</button>
+                <button type="reset" class="btn btn-danger ml-1">Cancel</button>
+                <button type="reset" class="btn btn-warning ml-1" [mat-dialog-close]>Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <table *ngIf="!jmbotronStyle">
+          <tr>
+            <td> Pristine:</td>
+            <td>{{empForm.pristine}} Not Typed</td>
+          </tr>
+          <tr>
+            <td> Dirty:</td>
+            <td>{{empForm.dirty}} Typed</td>
+          </tr>
+          <tr>
+            <td>Touched:</td>
+            <td>{{empForm.touched}}</td>
+          </tr>
+          <tr>
+            <td>Valid:</td>
+            <td>{{empForm.valid}}</td>
+          </tr>
+        </table>
+        <!-- {{empForm.value | json}} -->
+      </div>
+    </form>
+  </div>
+</div>

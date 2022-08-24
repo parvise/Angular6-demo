@@ -1,0 +1,36 @@
+<div class="table-responsive">
+  <table class="table table-hover">
+    <thead class="thead-light">
+      <tr class="bg-primary">
+        <th>#</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>ContactPrefernce</th>
+        <th><button class="btn-btn-sm btn-success text-white" title="New" (click)="AddEmployee()"><span
+              class="glyphicon glyphicon-plus"></span></button>
+          <button class="btn-btn-sm btn-success text-white" title="Excel" (click)="generateExcel()"><span
+              class="glyphicon glyphicon-download-alt"></span></button>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let employee of employeeList;let i=index;" style="cursor: pointer">
+        <td (click)="editEmployee(employee)">{{employee.id}}</td>
+        <td (click)="editEmployee(employee)">{{employee.fullName}}</td>
+        <td (click)="editEmployee(employee)">{{employee.email}}</td>
+        <td (click)="editEmployee(employee)"> {{employee.phone}}</td>
+        <td (click)="editEmployee(employee)">{{employee.contactPrefer}}</td>
+        <td>
+          <div>
+            <button class="btn btn-primary btn-sm pull-left" title="Edit" (click)="editEmployee(employee)"><span
+                class="glyphicon glyphicon-pencil"></span></button>
+            <button class="btn btn-danger btn-sm pull-left" title="Delete" (click)="deleteEmployee(employee.id)"><span
+                class="glyphicon glyphicon-trash"></span></button>
+
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

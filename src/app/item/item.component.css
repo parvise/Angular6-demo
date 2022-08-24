@@ -1,0 +1,14 @@
+.customTable table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+ td, th {
+  text-align: left;
+  
+}
+
+.customTable tr:nth-child(even) {
+  background-color: #dddddd;
+}

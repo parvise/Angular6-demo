@@ -1,0 +1,12 @@
+<p>
+  facebook-app works!
+</p>
+
+<button (click)="signIn('Facebook');">Sign in with Facebook</button><br /><br />
+<button (click)="signOut();">Sign out</button><br /><br />
+
+<div *ngIf="user">
+  <img src="{{ user.image }}" alt="FaceBook">
+  <h4>{{ user.name }}</h4>
+  <p>{{ user.email }}</p>
+</div>
